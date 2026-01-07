@@ -180,13 +180,18 @@ static esp_err_t index_handler(httpd_req_t *req) {
     <div class="container">
         <h1>ESP32-CAM 스트리밍</h1>
         <div class="status" id="status">연결됨</div>
-        <img id="stream" src="/stream">
+        <img id="stream" src="">
         <div>
             <button class="btn" onclick="captureImage()">사진 캡처</button>
             <button class="btn" onclick="toggleFlash()">플래시 토글</button>
         </div>
     </div>
     <script>
+        // 스트림 URL을 포트 81로 설정
+        window.onload = function() {
+            var streamUrl = 'http://' + window.location.hostname + ':81/stream';
+            document.getElementById('stream').src = streamUrl;
+        }
         function captureImage() {
             window.open('/capture', '_blank');
         }
